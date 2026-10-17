@@ -23,6 +23,6 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Examine deduction
+      - name: Validate Deduction
         run: |
-          python -c "from scripts.deduction import fetch_deduction, load_progress; print('Deduction:', fetch_deduction()); print('Progress:', load_progress())"
+          python -m scripts.advance --dry-run
