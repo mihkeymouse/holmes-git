@@ -1,15 +1,28 @@
+
+name: Deduction Engine
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
 permissions:
   contents: read
+
 jobs:
   investigate:
-  runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-  steps:
-  - name: Checkout code
-    uses: actions/checkout@v4
-  - name: Watson acknowledges your deduction
-    run: |
-      echo "Watson acknowledges your deduction"
-      echo "The game is afoot!"
-      cat deduction.txt
-      
+    steps:
+      - name: Checkout case files
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Examine deduction
+        run: |
+          python -c "from scripts.deduction import fetch_deduction, load_progress; print('Deduction:', fetch_deduction()); print('Progress:', load_progress())"
