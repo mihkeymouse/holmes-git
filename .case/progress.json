@@ -1,5 +1,8 @@
-
 {
-  "current_gate": "G3",
-  "completed": ["G1", "G2"]
+  "current_gate": "G4",
+  "completed": [
+    "G1",
+    "G2",
+    "G3"
+  ]
 }
