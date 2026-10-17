@@ -1,0 +1,15 @@
+permissions:
+  contents: read
+jobs:
+  investigate:
+  runs-on: ubuntu-latest
+
+  steps:
+  - name: Checkout code
+    uses: actions/checkout@v4
+  - name: Watson acknowledges your deduction
+    run: |
+      echo "Watson acknowledges your deduction"
+      echo "The game is afoot!"
+      cat deduction.txt
+      
