@@ -9,10 +9,10 @@ def commit_record(filename):
     if path.is_file() == False:
         raise FileNotFoundError(filename)
 
-    subprocess.run(["git","add","--",str(path), str(progress)], check=True)
-    subprocess.run(["git","-c", "user.name=Dr. John Watson", "-c", "user.email=watson@fakeemail.com",
+    subprocess.run(["git","add","--",str(path), str(progress), "README.md"], check=True)
+    subprocess.run(["git","-c", "user.name=Dr. John Watson", "-c", "user.email=watson@fake.email",
                     "commit", "-m", f"Watson records {path.stem}",
-                    "--", str(path), str(progress)], check=True)
+                    "--", str(path), str(progress),"README.md"], check=True)
     
 
 if __name__ == "__main__":

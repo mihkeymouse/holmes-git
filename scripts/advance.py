@@ -81,6 +81,7 @@ def main(argv=None):
         return 1
 
     original_progress = deepcopy(progress)
+    original_readme = None
 
     try:
         # Make the next Watson record
@@ -104,9 +105,18 @@ def main(argv=None):
             raise RuntimeError("Gate advancement failed")
 
         # Commit new record + progress
-        commit_record(str(chapter))
+        readme = Path("README.md")
+        original_readme = readme.read_text(encoding="utf-8")
+        start = "<!--DEDUCTION_START-->"
+        end = "<!--DEDUCTION_END-->"
+        before, rest = original_readme.split(start,1)
+        old_prompt, after = rest.split(end,1)
 
+        new_readme = (before + start + "\n" + config["next_prompt"].strip()+"\n" + end + after)
+        readme.write_text(new_readme,encoding="utf-8")
+        commit_record(str(chapter))
     except Exception as e:
+
         # Try a rollback
         try:
             save_progress(original_progress)
@@ -114,6 +124,9 @@ def main(argv=None):
             print(f"Rollback failed: {rollback_error}")
 
         chapter.unlink(missing_ok=True)
+        if original_readme != None:
+            Path("README.md").write_text(original_readme,encoding="utf-8")
+            
 
         print(f"Error during gate advancement: {e}")
         return 1
