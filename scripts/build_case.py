@@ -27,14 +27,56 @@ def build():
         git(DESTINATION, "init","-b","main")
 
         readme = DESTINATION / "README.md"
-        readme.write_text("Holmes-git\n\n"
+        readme.write_text("The Adventure of the Abbey Grange\n\n"
                           "A Sherlock Holmes mystery played through Git \n\n"
-                          "Begin the investigation with\n\n"
+                         "Solve the mystery using git commands!\n\n"
 
-                          "git log --oneline\n"
-                          "git show HEAD\n"
-                          "git show HEAD~1\n\n"
-                          "Examine the records under case/.\n")
+            "## Investigating\n\n"
+            "Explore the evidence with:\n\n"
+            "```bash\n"
+            "git log --oneline\n"
+            "git show HEAD\n"
+            "git diff HEAD~1 HEAD\n"
+            "```\n\n"
+            "Review the evidence under `case/`.\n\n"
+
+            "<!-- DEDUCTION_START -->\n"
+            "## G1 — The Wineglasses\n\n"
+            "Inspector Hopkins believes three burglars "
+            "entered the house and commited the crime.\n\n"
+            "Examine `case/03_dining_room.md`.\n\n"
+
+            "<details>\n"
+            "<summary>HINT:</summary>\n\n"
+             "Three glasses contained wine, but only one"
+            "contained bees-wing (sediment that forms in aged wine).\n\n"
+            "Why might the sediment be concentrated in only one "
+            "of the three glasses? and what does this suggest about the alleged three drinkers?\n\n"
+            "</details>\n\n"
+
+            "Write your deduction in deduction.txt`:\n\n"
+            "```text\n"
+            "G1=Your deduction here\n"
+            "```\n"
+            "<!-- DEDUCTION_END -->\n\n"
+
+            "## Submitting a Deduction\n\n"
+            "```bash\n"
+            "git add deduction.txt\n"
+            "git commit -m \"Holmes deduces....\"\n"
+            "git push\n"
+            "```\n\n"
+            "Check GH Actions for the result.\n\n"
+            "If your deduction is accepted, Dr. Watson will commit "
+            "the next record and update this README.\n\n"
+            "Retrieve it with:\n\n"
+            "```bash\n"
+            "git pull --rebase\n"
+            "git log --oneline\n"
+            "```\n",
+            encoding="utf-8"
+        )
+
       
         (DESTINATION / "case").mkdir()
         (DESTINATION / ".case").mkdir()
