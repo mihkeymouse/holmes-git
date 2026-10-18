@@ -1,0 +1,14 @@
+
+{
+  "next_gate": "G3",
+  "chapter": "case/05_investigation.md",
+  "answer": {
+    "concepts": [
+      ["rope", "cord", "bell"],
+      ["cut", "knife", "sever"],
+      ["blood", "chair"],
+      [ "after", "later", "stage", "fake", "fabricate"]
+    ]
+  },
+  "next_prompt": "##G3 - The Missing Connection \n\n Holmes suspects the man responsible was known to Lady Brackenstall. \n\n Examine `case/05_investigation.md` and Theresa's earlier testimony.\n\n **What connection must Holmes investigate next?** \n\n <details>\n<summary>💡Hint </summary> \n \n Consider Lady Brackenstall's journey to England. \n\n</details>\n\n Write your deduction in`deduction.txt`:\n\n```text\nG3=Your explanation here\n```  "
+}
