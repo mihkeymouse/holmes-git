@@ -1,20 +1,30 @@
 import json
 from pathlib import Path
 
+
 def parse_deduction(text):
-    parts = text.strip().split("=",1)
+    text = text.strip()
 
-    if len(parts)!=2:
-        raise ValueError("Expected a G1=ANSWER")
-    gate = parts[0].upper().strip()
-    answer = parts[1].strip().upper()
+    # A submission must contain exactly one deduction.
+    if len(text.splitlines()) != 1:
+        raise ValueError("Expected exactly one deduction")
 
-    if gate.startswith("G") == False or gate[1:].isdigit() == False:
-        raise ValueError("Invalid Gate")
+    # There must be exactly one equals sign.
+    if text.count("=") != 1:
+        raise ValueError("Expected G1=ANSWER")
+
+    gate, answer = text.split("=")
+
+    gate = gate.strip().upper()
+    answer = answer.strip().upper()
+
+    if not gate.startswith("G") or not gate[1:].isdigit():
+        raise ValueError("Invalid gate")
 
     if not answer:
-        raise ValueError("Empty Answer")
-    return gate,answer
+        raise ValueError("Empty answer")
+
+    return gate, answer
 
 def fetch_deduction(path="deduction.txt"):
     text = Path(path).read_text(encoding="utf-8")
