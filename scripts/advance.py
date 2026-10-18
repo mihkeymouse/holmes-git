@@ -1,31 +1,129 @@
+import json
 import sys
+import os
+from copy import deepcopy
+from pathlib import Path
 from scripts.deduction import (
     fetch_deduction,
     check_deduction,
     load_progress,
-    advance_gate
+    save_progress,
+    advance_gate,
 )
+from scripts.watson import commit_record
+from scripts.stage import load_stage
 
-def main():
-    gate, answer = fetch_deduction()
-    progress = load_progress()
+
+def main(argv=None):
+    if argv is None:
+        argv = sys.argv[1:]
+
+    # Read submitted deduction
+    try:
+        gate, answer = fetch_deduction()
+        progress = load_progress()
+    except Exception as e:
+        print(f"Error: {e}")
+        return 1
+
     current = progress["current_gate"]
 
-    if current != "G3":
-        print(f"Unexpected gate: {current}")
-        return
+    # Reject outdated or premature deductions
+    if gate != current:
+        print(
+            f"Unexpected deduction for gate {gate}. "
+            f"Current gate is {current}."
+        )
+        return 1
+
+    # Prevent completed gates from repeating
     if gate in progress["completed"]:
-        print(f"This deduction is already complete")
-        return
-    if "--dry-run" in sys.argv:
-        if check_deduction(gate,answer,current,"SAILOR"):
-            print("Yeh dry run hai, g4 would unlock")
-        else:
-            print("Yeh dry run hai, g4 would not unlock")
-        return
-    if advance_gate(progress, gate, answer, "SAILOR", "G4"):
-        print("Deduction correct! Good work!")
-    else:
-        print("Not quite right. Reconsider the evidence.")
+        print(f"Gate {gate} has already been completed.")
+        return 1
+
+    #LOAD DEDUCTION + NEXT PASSAGE
+    try:
+        config = load_stage(current)
+    except Exception as e:
+        print(f"could not load stage {current}: {e}")
+        return 1
+    
+
+    # Check answer
+    valid = check_deduction(
+        gate, answer, current, config["answer"]
+    )
+
+    # Dry runs
+    if "--dry-run" in argv:
+        if valid:
+            print(
+                f"Yeh dry run hai: "
+                f"{config['next_gate']} would be unlocked."
+            )
+            return 0
+
+        print("Dry run: Deduction is invalid.")
+        return 1
+
+    if not valid:
+        print("Deduction is invalid.")
+        return 1
+
+    # Don't overwrite existing record
+    chapter = Path(config["chapter"])
+
+    if chapter.exists():
+        print(
+            f"Chapter {chapter} already exists. "
+            "Aborting to prevent overwrite."
+        )
+        return 1
+
+    original_progress = deepcopy(progress)
+
+    try:
+        # Make the next Watson record
+        chapter.parent.mkdir(parents=True, exist_ok=True)
+
+        chapter.write_text(
+            config["content"],
+            encoding="utf-8"
+        )
+
+        # Advance the gate and save progress
+        advanced = advance_gate(
+            progress,
+            gate,
+            answer,
+            config["answer"],
+            config["next_gate"]
+        )
+
+        if not advanced:
+            raise RuntimeError("Gate advancement failed")
+
+        # Commit new record + progress
+        commit_record(str(chapter))
+
+    except Exception as e:
+        # Try a rollback
+        try:
+            save_progress(original_progress)
+        except Exception as rollback_error:
+            print(f"Rollback failed: {rollback_error}")
+
+        chapter.unlink(missing_ok=True)
+
+        print(f"Error during gate advancement: {e}")
+        return 1
+
+    print(
+        f"Deduction accepted. "
+        f"{config['next_gate']} unlocked."
+    )
+    return 0
+
+
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

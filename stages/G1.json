@@ -1,0 +1,12 @@
+
+{
+  "next_gate": "G2",
+  "chapter": "case/04_return.md",
+  "answer": {
+    "concepts": [
+      ["two", "2", "pair"],
+      ["third", "three", "3", "another", "extra"],
+      ["stage", "fake", "pretend", "pour", "mix", "combine", "transfer", "dreg", "fabricate"]
+    ]
+  }
+}
