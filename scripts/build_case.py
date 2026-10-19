@@ -35,22 +35,21 @@ def build():
             "You are Sherlock Holmes. Dr. Watson has kept a "
             "version-controlled record of a quite remarkable case.\n\n"
 
-            "Investigate the evidence,follow the history and draw your deductions\n\n"
+            "Investigate the evidence, follow the history and draw your deductions.\n\n"
 
             "## How to Play\n\n"
             "Explore Watson's records, commits and branches using:\n\n"
             "```bash\n"
-            "git log --oneline\n"
+            "git log --all --online --graph\n"
+            "git branch -a\n"
             "git show HEAD\n"
-            "git diff HEAD~1 HEAD\n"
             "```\n\n"
 
             "New case-files will appear under `case/` as "
-            "the investigation advances\n\n"
+            "the investigation advances.\n\n"
 
-            "Write your answer in `deduction.txt`,then commit "
-            " and push it.\n\n"
-
+            "Write your answer in `deduction.txt`, then commit "
+            "and push it.\n\n"
             "Once GitHub Actions completes, retrieve "
             "the latest records using:\n\n"
             "```bash\n"

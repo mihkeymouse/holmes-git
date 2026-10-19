@@ -7,6 +7,7 @@
 “Vox populi, vox Dei. You have been found guilty, Captain Crocker.”
 
 
+
 ## BAD ENDING — The Letter of the Law
 
 Holmes accepts Watson's verdict and withdraws his offer of protection. Capt Crocker's confession is handed over to Inspector Hopkins, and he is taken into custody.

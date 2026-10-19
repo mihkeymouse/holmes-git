@@ -1,10 +1,12 @@
+
 {
   "next_gate": "G4",
   "chapter": "case/06_shipping.md",
   "answer": {
     "concepts": [
-      ["ship", "sail", "crew", "boat","steam","passenger","maritime","seaman","nautical"],
-      ["mary", "fraser", "theresa", "brackenstall", "australia","adelaide","voyage","passenger","arrive","journey"]
+      ["ship", "sail", "crew", "boat", "steam", "passenger", "maritime", "seaman", "nautical"],
+      ["mary", "fraser", "theresa", "brackenstall", "australia", "adelaide", "voyage", "passenger", "arrive", "journey"]
     ]
   },
-  "next_prompt": "##G4 - The First Officer \n\n Read `case/06_shipping.md` and compare its findings with the earlier, physical evidence. \n\n **Why should Holmes investigate Jack Crocker? What connects him to the crime?**\n\n<details>\n<summary>💡 Hint</summary>\n\nConsider his occupation and his connection to Mary's voyage.\n\n</details>\n\nWrite your deduction in `deduction.txt`:\n\n```text\nG4=Your deduction here\n```"}
+  "next_prompt": "## G4 — The First Officer\n\nRead `case/06_shipping.md` and compare its findings with the earlier physical evidence.\n\n**Why should Holmes investigate Jack Crocker? What connects him to the crime?**\n\n<details>\n<summary>Hint</summary>\n\nConsider his occupation and his connection to Mary's voyage.\n\n</details>\n\nWrite your deduction in `deduction.txt`:\n\n```text\nG4=Your deduction here\n```"
+}
