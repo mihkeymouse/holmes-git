@@ -1,6 +1,7 @@
 import json
 import sys
 import os
+import subprocess
 from copy import deepcopy
 from pathlib import Path
 from scripts.deduction import (
@@ -77,19 +78,32 @@ def main(argv=None):
         return 1
     if current == "G0":
         records = config["opening_contents"]
-        for index, (filename,content) in enumerate(records):
+
+        #The summons and the Hopkins are recirded on main branch
+        for filename, content in records[:2]:
+            path = Path(filename)
+            path.parents.mkdir(parents=True, exist_ok = True)
+            path.write_text(content,encoding="utf-8")
+            commit_record(str(path))
+
+        #diverge witness testimony and physical evidence
+        for branch, (filename, content) in zip(("testimony","evidence"),records[2:]):
+            subprocess.run(["git","switch","-c",branch],check=True)
             path = Path(filename)
             path.parent.mkdir(parents=True, exist_ok=True)
-            path.write_text(content, encoding="utf-8")
-
-            #final rec also unlocks first deductiion
-            if index == len(records)-1:
-                advance_gate(progress,gate,answer,config["answer"],config["next_gate"])
-                Path("README.md").write_text(config["next_prompt"].strip() + "\n", encoding="utf-8")
+            path.write_text(content,encoding="utf-8")
             commit_record(str(path))
-        print("Investigation begun, G1 unlocked")
-        return 0
+            subprocess.run(["git","switch","main"],check=True)
 
+        advance_gate(progress,gate,answer,config["answer"],config["next_gate"])
+        Path("README.md").write_text(config["next_prompt"].strip() + "\n", encoding="utf-8")
+        subprocess.run(["git","add","README.md", ".case/progress.json"],check=True)
+        subprocess.run(["git", "-c", "user.name=Dr. John Watson",
+                "-c", "user.email=watson@fake.email",
+                "commit", "-m", "Watson lays out the evidence"],check=True)
+        print("Investigation begun. G1 Unlocked.")
+        return 0
+            
     # Don't overwrite existing record
     chapter = Path(config["chapter"])
 

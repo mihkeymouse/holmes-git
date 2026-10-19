@@ -34,4 +34,7 @@ jobs:
         run: python -m scripts.advance
 
       - name: Push Watson's record
-        run: git push origin HEAD:main
+        run: | git push origin HEAD:main
+               if git show-ref --verify --quiet refs/heads/testimony; then
+               git push origin testimony evidence
+               

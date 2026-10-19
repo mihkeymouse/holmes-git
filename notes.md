@@ -65,7 +65,7 @@ case/
 .github/
     workflows/
 
-How do we make sure git blam workes as it is intended to accuse Capt croker?
+How do we make sure git blam workes as it is intended to accuse Capt Crocker?
 
 git blame - responsibility aint guilt
 b4 finale
