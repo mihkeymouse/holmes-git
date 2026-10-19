@@ -7,7 +7,7 @@ import sys
 import json
 
 ROOT = Path(__file__).resolve().parent.parent
-DESTINATION = ROOT.parent / "Abbey-Grange-RC"
+DESTINATION = ROOT.parent / "The-Adventure-of-the-Abbey_Grange"
 
 RECORDS = ["00_summons.md","01_hopkins.md","02_testimonies.md","03_dining_room.md"]
 def git(directory, *args):

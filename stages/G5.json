@@ -5,14 +5,14 @@
             "source":"G5_guilty.md",
             "chapter": "case/08_verdict.md",
             "next_gate": "COMPLETE",
-            "next_prompt":"Case Closed - GUILTY \n\n You found Captain Crocker guilty \n\n Read `case/08_verdict.md` for the consequences of YOUR judgement. The investigation is complete"
+            "next_prompt":"## Case Closed - GUILTY \n\n You found Captain Crocker guilty \n\n Read `case/08_verdict.md` for the consequences of YOUR judgement. The investigation is complete"
 
                 },
-        "not_guilty":{
+        "not_guilty":{ 
             "source":"G5_not_guilty.md",
             "chapter": "case/08_verdict.md",
             "next_gate": "COMPLETE",
-            "next_prompt":"Case Closed - NOT GUILTY \n\n You acquitted Captain Crocker. \n\n Read `case/08_verdict.md` for the consequences of YOUR judgement. The investigation is complete"
+            "next_prompt":"## Case Closed - NOT GUILTY \n\n You acquitted Captain Crocker. \n\n Read `case/08_verdict.md` for the consequences of YOUR judgement. The investigation is complete"
 
                 }    
                 

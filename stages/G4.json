@@ -8,4 +8,4 @@
       ["mary", "fraser", "theresa", "brackenstall", "australia","adelaide","voyage","passenger"]
     ]
   },
-  "next_prompt": "##G5 - The Final Judgement \n\n Captain Crocker has confessed. He admits to killing Sir Eustace Brackenstall, but he insists that he acted to defend himself and Mary Fraser. Go through `case/07_confession.md` carefully and review all the facts of the case. \n\n **What verdict should Watson, acting as Jury, deliver?**\n\nRecord your verdict in `deduction.txt`:\n\n```text\nG5=GUILTY\n```\n\nor\n\n```text\nG5=NOT GUILTY\n```\n\nCommit and push your verdict.`"}
+  "next_prompt": "## G5 - The Final Judgement \n\n Captain Crocker has confessed. He admits to killing Sir Eustace Brackenstall, but he insists that he acted to defend himself and Mary Fraser. Go through `case/07_confession.md` carefully and review all the facts of the case. \n\n **What verdict should Watson, acting as Jury, deliver?**\n\nRecord your verdict in `deduction.txt`:\n\n```text\nG5=GUILTY\n```\n\nor\n\n```text\nG5=NOT GUILTY\n```\n\nCommit and push your verdict.`"}
