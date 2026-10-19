@@ -10,6 +10,7 @@
   ],
 
 
-"next_prompt": "## G2 — The Bell Rope\n\nHolmes has returned to Abbey Grange to examine the dining room again.\n\nReview `case/04_return.md` and compare the evidence with Lady Brackenstall's testimony.\n\n**What does the condition of the bell rope suggest about the alleged burglary?**\n\nRecord your deduction in `deduction.txt`:\n\n```text\nG2=Your deduction here\n```"
+
+"next_prompt": "## G1 — The Wineglasses\n\nInspector Hopkins believes three burglars entered the house and committed the crime.\n\nExamine the witness testimony and dining-room evidence on their respective branches.\n\n**What do the wineglasses suggest about the alleged three drinkers?**\n\n<details>\n<summary>HINT:</summary>\n\nThree glasses contained wine, but only one contained bees-wing (sediment that forms in aged wine).\n\nWhy might the sediment be concentrated in only one of the three glasses? And what does this suggest about the alleged three drinkers?\n\n</details>\n\nWrite your deduction in `deduction.txt`:\n\n```text\nG1=Your deduction here\n```"
 
 }
