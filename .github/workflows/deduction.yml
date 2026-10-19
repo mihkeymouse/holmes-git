@@ -21,6 +21,7 @@ jobs:
       - name: Checkout case
         uses: actions/checkout@v4
         with:
+          ref: main
           fetch-depth: 0
 
       - name: Set up Python
@@ -33,8 +34,12 @@ jobs:
           CASE_STAGE_URL: https://raw.githubusercontent.com/mihkeymouse/holmes-git/main/stages
         run: python -m scripts.advance
 
+      
       - name: Push Watson's record
-        run: | git push origin HEAD:main
-               if git show-ref --verify --quiet refs/heads/testimony; then
-               git push origin testimony evidence
+        run: |
+          git push origin HEAD:main
+          if git show-ref --verify --quiet refs/heads/testimony; then
+            git push origin testimony evidence
+          fi
+
                

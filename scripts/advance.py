@@ -82,7 +82,7 @@ def main(argv=None):
         #The summons and the Hopkins are recirded on main branch
         for filename, content in records[:2]:
             path = Path(filename)
-            path.parents.mkdir(parents=True, exist_ok = True)
+            path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text(content,encoding="utf-8")
             commit_record(str(path))
 
