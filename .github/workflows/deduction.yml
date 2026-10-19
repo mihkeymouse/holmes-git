@@ -15,6 +15,7 @@ concurrency:
 
 jobs:
   investigate:
+    if: ${{ !github.event.created }}
     runs-on: ubuntu-latest
 
     steps:

@@ -35,11 +35,10 @@ def build():
             "You are Sherlock Holmes. Dr. Watson has kept a "
             "version-controlled record of a quite remarkable case.\n\n"
 
-            "Investigate the evidence, form your deductions "
-            "and test them through Git.\n\n"
+            "Investigate the evidence,follow the history and draw your deductions\n\n"
 
             "## How to Play\n\n"
-            "Explore Watson's records using:\n\n"
+            "Explore Watson's records, commits and branches using:\n\n"
             "```bash\n"
             "git log --oneline\n"
             "git show HEAD\n"
@@ -53,7 +52,7 @@ def build():
             " and push it.\n\n"
 
             "Once GitHub Actions completes, retrieve "
-            "the next record using:\n\n"
+            "the latest records using:\n\n"
             "```bash\n"
             "git pull --rebase\n"
             "```\n\n"
@@ -113,3 +112,4 @@ if __name__ == "__main__":
        ) as error:
         print(f"Build failed: {error}",file=sys.stderr)
         sys.exit(1)
+        
