@@ -7,7 +7,7 @@ import sys
 import json
 
 ROOT = Path(__file__).resolve().parent.parent
-DESTINATION = ROOT.parent / "Abbey-Grange-Case-Test-2"
+DESTINATION = ROOT.parent / "Abbey-Grange-RC"
 
 RECORDS = ["00_summons.md","01_hopkins.md","02_testimonies.md","03_dining_room.md"]
 def git(directory, *args):
@@ -40,7 +40,7 @@ def build():
             "## How to Play\n\n"
             "Explore Watson's records, commits and branches using:\n\n"
             "```bash\n"
-            "git log --all --online --graph\n"
+            "git log --all --oneline --graph\n"
             "git branch -a\n"
             "git show HEAD\n"
             "```\n\n"
