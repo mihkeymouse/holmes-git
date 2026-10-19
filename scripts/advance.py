@@ -49,7 +49,7 @@ def main(argv=None):
 
     #LOAD DEDUCTION + NEXT PASSAGE
     try:
-        config = load_stage(current,outcome=outcome1)
+        config = load_stage(current,outcome=outcome)
     except Exception as e:
         print(f"could not load stage {current}: {e}")
         return 1
