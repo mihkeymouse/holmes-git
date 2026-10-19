@@ -107,8 +107,8 @@ def main(argv=None):
         # Commit new record + progress
         readme = Path("README.md")
         original_readme = readme.read_text(encoding="utf-8")
-        start = "<!--DEDUCTION_START-->"
-        end = "<!--DEDUCTION_END-->"
+        start = "<!-- DEDUCTION_START -->"
+        end = "<!-- DEDUCTION_END -->"
         before, rest = original_readme.split(start,1)
         old_prompt, after = rest.split(end,1)
 
