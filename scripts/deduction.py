@@ -36,6 +36,10 @@ def check_deduction(gate, answer, expected_gate, expected_answer):
       return False
     if isinstance(expected_answer,str):
         return answer == expected_answer
+   #G5 either valid
+    if "options" in expected_answer:
+        return answer.strip().upper() in expected_answer["options"]
+    #all other gates - regex match deductions
     words = re.findall(r"[a-z0-9]+", answer.lower())
     for group in expected_answer["concepts"]:
         matched = any(word.startswith(term)

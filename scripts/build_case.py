@@ -45,6 +45,7 @@ def build():
             "Inspector Hopkins believes three burglars "
             "entered the house and commited the crime.\n\n"
             "Examine `case/03_dining_room.md`.\n\n"
+            "**What do the wineglasses suggest about the alleged three drinkers?**\n\n"
 
             "<details>\n"
             "<summary>HINT:</summary>\n\n"

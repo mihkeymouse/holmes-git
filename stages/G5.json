@@ -1,0 +1,21 @@
+{
+    "answer":{"options":["GUILTY", "NOT GUILTY"]},
+    "outcomes":{
+        "guilty":{
+            "source":"G5_guilty.md",
+            "chapter": "case/08_verdict.md",
+            "next_gate": "COMPLETE",
+            "next_prompt":"Case Closed - GUILTY \n\n You found Capt. Croker guilty \n\n Read `case/08_verdict.md` for the consequences of YOUR judgement. The investigation is complete"
+
+                },
+        "not guilty":{
+            "source":"G5_not_guilty.md",
+            "chapter": "case/08_verdict.md",
+            "next_gate": "COMPLETE",
+            "next_prompt":"Case Closed - NOT GUILTY \n\n You acquitted Capt Croker. \n\n Read `case/08_verdict.md` for the consequences of YOUR judgement. The investigation is complete"
+
+                }    
+                
+
+    }
+}

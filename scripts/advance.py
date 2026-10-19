@@ -41,6 +41,12 @@ def main(argv=None):
         print(f"Gate {gate} has already been completed.")
         return 1
 
+    #select ending
+
+    outcome = None
+    if current == "G5":
+        outcome = {"GUILTY":"guilty","NOT GUILTY":"not_guilty"}.get(answer.strip.upper())
+        
     #LOAD DEDUCTION + NEXT PASSAGE
     try:
         config = load_stage(current)
@@ -140,3 +146,4 @@ def main(argv=None):
 
 if __name__ == "__main__":
     sys.exit(main())
+
