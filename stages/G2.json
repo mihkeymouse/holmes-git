@@ -7,8 +7,8 @@
       ["rope", "cord", "bell"],
       ["cut", "knife", "sever"],
       ["blood", "chair"],
-      [ "after", "later", "stage", "fake", "fabricate"]
+      [ "after", "later", "stage", "fake", "fabricate","lie","false"]
     ]
   },
-  "next_prompt": "##G3 - The Missing Connection \n\n Holmes suspects the man responsible was known to Lady Brackenstall. \n\n Examine `case/05_investigation.md` and Theresa's earlier testimony.\n\n **What connection must Holmes investigate next?** \n\n <details>\n<summary>💡Hint </summary> \n \n Consider Lady Brackenstall's journey to England. \n\n</details>\n\n Write your deduction in`deduction.txt`:\n\n```text\nG3=Your explanation here\n```  "
+  "next_prompt": "## G3 — The Missing Connection\n\n Holmes believes the burglary was stage, and that Lady Brackenstall and Theresa are protecting someone.\n\nRead `case/05_investigation.md` and revisit the knots described in `case/03_dining_room.md`.\n\n**What kind of person might fit the physical evidence, and what records should Holmes investigate to identify him?**\n\n<details>\n<summary>💡 Hint</summary>\n\nThink about Lady Brackenstall's voyage, and the profession  that requires familiarity with ropes and knots.\n\n</details>\n\nRecord your deduction in `deduction.txt`:\n\n```text\nG3=Your explanation here\n```"
 }
