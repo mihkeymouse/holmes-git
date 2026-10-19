@@ -1,0 +1,12 @@
+
+{
+  "next_gate": "G1",
+  "answer": "START!",
+  "opening_records": [
+    "case/00_summons.md",
+    "case/01_hopkins.md",
+    "case/02_testimonies.md",
+    "case/03_dining_room.md"
+  ],
+  "next_prompt": "## G1 — The Wineglasses\n\nInspector Hopkins believes three burglars entered the house and commited the crime.\n\nExamine `case/03_dining_room.md`.\n\n**What do the wineglasses suggest about the alleged three drinkers?**\n\n<details>\n<summary>HINT:</summary>\n\nThree glasses contained wine, but only onecontained bees-wing (sediment that forms in aged wine).\n\nWhy might the sediment be concentrated in only one of the three glasses? and what does this suggest about the alleged three drinkers?\n\n</details>\n\nWrite your deduction in deduction.txt`:\n\n```text\nG1=Your deduction here\n```"
+}

@@ -8,7 +8,7 @@
             "next_prompt":"Case Closed - GUILTY \n\n You found Capt. Croker guilty \n\n Read `case/08_verdict.md` for the consequences of YOUR judgement. The investigation is complete"
 
                 },
-        "not guilty":{
+        "not_guilty":{
             "source":"G5_not_guilty.md",
             "chapter": "case/08_verdict.md",
             "next_gate": "COMPLETE",

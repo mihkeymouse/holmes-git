@@ -27,64 +27,63 @@ def build():
         git(DESTINATION, "init","-b","main")
 
         readme = DESTINATION / "README.md"
-        readme.write_text("The Adventure of the Abbey Grange\n\n"
-                          "A Sherlock Holmes mystery played through Git \n\n"
-                         "Solve the mystery using git commands!\n\n"
+        
+        readme.write_text(
+            "# The Adventure of the Abbey Grange\n\n"
+            "*A Sherlock Holmes mystery played through Git.*\n\n"
 
-            "## Investigating\n\n"
-            "Explore the evidence with:\n\n"
+            "You are Sherlock Holmes. Dr. Watson has kept a "
+            "version-controlled record of a quite remarkable case.\n\n"
+
+            "Investigate the evidence, form your deductions "
+            "and test them through Git.\n\n"
+
+            "## How to Play\n\n"
+            "Explore Watson's records using:\n\n"
             "```bash\n"
             "git log --oneline\n"
             "git show HEAD\n"
             "git diff HEAD~1 HEAD\n"
             "```\n\n"
-            "Review the evidence under `case/`.\n\n"
 
-            "<!-- DEDUCTION_START -->\n"
-            "## G1 — The Wineglasses\n\n"
-            "Inspector Hopkins believes three burglars "
-            "entered the house and commited the crime.\n\n"
-            "Examine `case/03_dining_room.md`.\n\n"
-            "**What do the wineglasses suggest about the alleged three drinkers?**\n\n"
+            "New case-files will appear under `case/` as "
+            "the investigation advances\n\n"
 
-            "<details>\n"
-            "<summary>HINT:</summary>\n\n"
-             "Three glasses contained wine, but only one"
-            "contained bees-wing (sediment that forms in aged wine).\n\n"
-            "Why might the sediment be concentrated in only one "
-            "of the three glasses? and what does this suggest about the alleged three drinkers?\n\n"
-            "</details>\n\n"
+            "Write your answer in `deduction.txt`,then commit "
+            " and push it.\n\n"
 
-            "Write your deduction in deduction.txt`:\n\n"
-            "```text\n"
-            "G1=Your deduction here\n"
-            "```\n"
-            "<!-- DEDUCTION_END -->\n\n"
-
-            "## Submitting a Deduction\n\n"
-            "```bash\n"
-            "git add deduction.txt\n"
-            "git commit -m \"Holmes deduces....\"\n"
-            "git push\n"
-            "```\n\n"
-            "Check GH Actions for the result.\n\n"
-            "If your deduction is accepted, Dr. Watson will commit "
-            "the next record and update this README.\n\n"
-            "Retrieve it with:\n\n"
+            "Once GitHub Actions completes, retrieve "
+            "the next record using:\n\n"
             "```bash\n"
             "git pull --rebase\n"
-            "git log --oneline\n"
-            "```\n",
+            "```\n\n"
+
+            "## Begin the Investigation\n\n"
+            "Open `deduction.txt` and enter:\n\n"
+            "```text\n"
+            "G0=START!\n"
+            "```\n\n"
+
+            "Then run:\n\n"
+            "```bash\n"
+            "git add deduction.txt\n"
+            "git commit -m \"START!\"\n"
+            "git push\n"
+            "```\n\n"
+
+        
+            "**The game is afoot!**\n",
             encoding="utf-8"
         )
+
 
       
         (DESTINATION / "case").mkdir()
         (DESTINATION / ".case").mkdir()
 
-        progress = {"current_gate": "G1", "completed":[]}
+        progress = {"current_gate": "G0", "completed":[]}
         (DESTINATION / ".case" / "progress.json").write_text(json.dumps(progress, indent=2))
-        (DESTINATION / "deduction.txt").write_text("G1=\n")
+        (DESTINATION / "deduction.txt").write_text("G0=\n")
 
         (DESTINATION / "scripts").mkdir()
 
@@ -98,20 +97,7 @@ def build():
             "-c", "user.email=watson@fake.email",
             "commit","-m", "Watson opens the casebook")
 
-        for record in RECORDS:
-            source = ROOT/ "case"/ record
-            target =  DESTINATION / "case" / record
-
-            shutil.copyfile(source,target)
-
-            git(DESTINATION, "add", "--", f"case/{record}")
-
-            git(DESTINATION,
-                "-c","user.name=Dr.John Watson",
-                "-c", "user.email=watson@fake.email",
-                "commit",
-                "-m", f"Watson records {Path(record).stem}"
-            )
+        
     except Exception:
         shutil.rmtree(DESTINATION)
         raise

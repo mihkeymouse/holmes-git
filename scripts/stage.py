@@ -17,7 +17,7 @@ def load_stage(gate, outcome=None):
     if outcome is not None:
         config.update(config["outcomes"][outcome])
 
-    source = config.get("source", f"{gate.md}")
+    source = config.get("source", f"{gate}.md")
 
     if local:
         content = (stage_dir / source).read_text(encoding="utf-8")

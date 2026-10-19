@@ -45,11 +45,11 @@ def main(argv=None):
 
     outcome = None
     if current == "G5":
-        outcome = {"GUILTY":"guilty","NOT GUILTY":"not_guilty"}.get(answer.strip.upper())
-        
+        outcome = {"GUILTY":"guilty","NOT GUILTY":"not_guilty"}.get(answer.strip().upper())
+
     #LOAD DEDUCTION + NEXT PASSAGE
     try:
-        config = load_stage(current)
+        config = load_stage(current,outcome=outcome1)
     except Exception as e:
         print(f"could not load stage {current}: {e}")
         return 1
@@ -75,6 +75,20 @@ def main(argv=None):
     if not valid:
         print("Deduction is invalid.")
         return 1
+    if current == "G0":
+        records = config["opening_contents"]
+        for index, (filename,content) in enumerate(records):
+            path = Path(filename)
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(content, encoding="utf-8")
+
+            #final rec also unlocks first deductiion
+            if index == len(records)-1:
+                advance_gate(progress,gate,answer,config["answer"],config["next_gate"])
+                Path("README.md").write_text(config["next_prompt"].strip() + "\n", encoding="utf-8")
+            commit_record(str(path))
+        print("Investigation begun, G1 unlocked")
+        return 0
 
     # Don't overwrite existing record
     chapter = Path(config["chapter"])
@@ -113,13 +127,10 @@ def main(argv=None):
         # Commit new record + progress
         readme = Path("README.md")
         original_readme = readme.read_text(encoding="utf-8")
-        start = "<!-- DEDUCTION_START -->"
-        end = "<!-- DEDUCTION_END -->"
-        before, rest = original_readme.split(start,1)
-        old_prompt, after = rest.split(end,1)
-
-        new_readme = (before + start + "\n" + config["next_prompt"].strip()+"\n" + end + after)
-        readme.write_text(new_readme,encoding="utf-8")
+        readme.write_text(
+            config["next_prompt"].strip() + "\n",
+            encoding="utf-8"
+        )
         commit_record(str(chapter))
     except Exception as e:
 

@@ -1,0 +1,13 @@
+
+{
+  "next_gate": "G2",
+  "chapter": "case/04_return.md",
+  "answer": {
+    "concepts": [
+      ["two", "2", "pair"],
+      ["third", "three", "3", "another", "extra"],
+      ["stage", "fake", "pretend", "pour", "mix", "combine", "transfer", "dreg", "fabricate"]
+    ]
+  },
+  "next_prompt": "##G2 - The Bell Rope \n\n Holmes has returned to Abbey Grange to examine the dining room again. \n\n Review `case/04_return.md` and compare the evidence with Lady Brackenstall's testimony. \n\n **What does the condition of the bellrope suggest about the alleged burglary?***\n\nRecord your deduction in `deduction.txt`:\n\n```text\nG2=Your deduction here\n```"
+}
