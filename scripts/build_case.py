@@ -22,6 +22,7 @@ def build():
         if source.is_file() == False:
             raise FileNotFoundError(f"Missing record {source}")
     DESTINATION.mkdir()
+    shutil.copyfile(ROOT / ".gitignore", DESTINATION / ".gitignore")
 
     try:
         git(DESTINATION, "init","-b","main")
@@ -89,7 +90,7 @@ def build():
             shutil.copyfile(ROOT / "scripts" / script, DESTINATION / "scripts" / script)
         (DESTINATION / ".github" / "workflows").mkdir(parents=True)
         shutil.copyfile(ROOT /".github"/ "workflows" / "deduction.yml", DESTINATION / ".github" / "workflows" / 'deduction.yml')
-        git(DESTINATION,"add","README.md", ".case/progress.json", "deduction.txt", "scripts/", ".github/")
+        git(DESTINATION,"add","README.md", ".case/progress.json", "deduction.txt", "scripts/", ".github/",".gitignore")
         git(DESTINATION,
             "-c", "user.name=Dr.John Watson",
             "-c", "user.email=watson@fake.email",
